@@ -1,0 +1,40 @@
+﻿@model PizzaWebApp.Models.Pizza
+
+<div>
+    <h1>Upgrade @ViewBag.pizza.Name Pizza</h1>
+    <p>@ViewBag.pizza.Description</p>
+
+    <form asp-action="UpgradePizzaForm" method="post">
+        <input type="hidden" asp-for="Name" value="@ViewBag.pizza.Name" />
+        <input type="hidden" asp-for="Description" value="@ViewBag.pizza.Description" />
+        <input type="hidden" asp-for="Price" value="@ViewBag.pizza.Price" />
+
+
+        <p>Upgrade Size</p>
+        <input type="radio" asp-for="Size" value="Medium" checked ="checked">
+        <label asp-for="Size">Medium</label><br>
+
+        <input type="radio" asp-for="Size" value="Large">
+        <label asp-for="Size">Large - $4.00</label><br>
+
+        <input type="radio" asp-for="Size" value="ExtraLarge">
+        <label asp-for="Size">Extra Large - $6.00</label><br>
+
+        <br />
+        <br />
+
+        <p>Add Extra Cheese</p>
+        <input type="checkbox" asp-for="ExtraCheese" value="true" />
+        <label asp-for="ExtraCheese"> Add Extra Cheese - $1.50</label><br>
+
+        <button type="submit" name="submitButton" value="confirm">Confirm</button>
+        <br />
+        <br />
+        <button type="submit" name="submitButton" value="cancel">Cancel</button>
+        <br />
+
+        <br />
+
+    </form>
+
+</div>

@@ -1,0 +1,54 @@
+﻿@model PizzaWebApp.Models.Order
+
+<body>
+    <script src="~/js/site.js">
+    </script>
+
+    <h1>Checkout Page</h1>
+
+    <form asp-action="Checkout" method="post">
+
+        <div asp-validation-summary="All"></div>
+
+        <label asp-for="Name">Enter a Name for the Order: </label>
+        <input type="text" asp-for="Name"><br>
+        <br>
+
+        <p>Pick-up or Delivery?</p>
+        <input type="radio" asp-for="IsDelivery" value="pickup" >
+        <label asp-for="IsDelivery">Pick-up</label><br>
+
+        <input type="radio" asp-for="IsDelivery" value="delivery">
+        <label asp-for="IsDelivery">Delivery</label><br>
+
+        <br />
+        <div id="deliveryAddress">
+            <p>Delivery Address</p>
+            <label name="deliveryAddressField" asp-for="Street">Street Address: </label><br>
+            <input type="text" asp-for="Street"><br />
+
+            <label name="deliveryAddressField" asp-for="City">City: </label><br>
+            <input type="text" asp-for="City"><br />
+
+            <label name="deliveryAddressField" asp-for="State">State: </label><br>
+            <select asp-for="State">
+                <option value="UT">Utah</option>
+                <option value="CO">Colorado</option>
+                <option value="NV">Nevada</option>
+                <option value="ID">Idaho</option>
+            </select>
+            <br />
+
+            <label name="deliveryAddressField" asp-for="Zip">Zip Code: </label><br>
+            <input type="text" asp-for="Zip"><br />
+        </div>
+
+        <br/>
+        <button type="submit">Confirm Order</button>
+        
+    </form>
+
+    
+</body>
+
+

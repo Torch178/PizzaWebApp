@@ -1,0 +1,62 @@
+﻿@model PizzaWebApp.Models.Repository
+@{
+    int id = 0;
+}
+<h1>Order Summary Page</h1>
+
+<div>
+    <h3>Total and Delivery Information</h3>
+    <p>Name on the Order: @Repository.Order.Name</p>
+    <p>Sub-Total:$ @Math.Round(Repository.Order.Total, 2)</p>
+    <p>Tax:$ @Math.Round(Repository.Order.Tax, 2)</p>
+    <p>Grand Total:$ @Math.Round(Repository.Order.GrandTotal, 2)</p>
+    @if (Repository.Order.IsDelivery == "delivery")
+    {
+        <p>Delivery Address: @Repository.Order.Street @Repository.Order.City , @Repository.Order.State @Repository.Order.Zip</p>
+    }
+    else
+    {
+        <p>Pick-up Location: 123 Easy Street Ogden, UT</p>
+    }
+
+</div>
+
+<h3>Item(s) on Order</h3>
+<table class="blueTable">
+    <thead>
+        <tr>
+            <th>Pizza</th>
+            <th>Size</th>
+            <th>Description</th>
+            <th>Add-Ons</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Pizza p in Repository.Pizzas)
+        {
+            <tr>
+                <td>@p.Name</td>
+                <td>@p.Size</td>
+                <td>@p.Description</td>
+                @if(p.ExtraCheese == true)
+                {
+                    <td>Extra Cheese</td>
+                }
+                else
+                {
+                    <td>None</td>
+                }
+                <td>@p.Price</td>
+                <td><form asp-action="OrderSummary" method="post"><button value="@id">Remove</button></form></td>
+            </tr>
+        }
+    </tbody>
+    <br />
+
+    <a asp-action="ThankYou"><button>Place Order</button></a>
+    
+    
+</table>
+
+

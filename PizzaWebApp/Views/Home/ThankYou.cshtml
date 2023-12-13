@@ -1,0 +1,21 @@
+﻿@model PizzaWebApp.Models.Repository
+
+<h1>Order Placed Successfully!</h1>
+
+@{
+    if(Repository.Order.IsDelivery == "delivery")
+    {
+        <p>We will be delivering your order to @Repository.Order.Street @Repository.Order.City , @Repository.Order.State shortly!</p>
+    }
+    else
+    {
+        <p>Pick-up at 123 Easy Street Ogden , UT at approximately @DateTime.Now.AddMinutes(30).ToString("hh:mm tt")</p>
+    }
+
+    <div>
+        <h3>Order Reciept</h3>
+        <p>Sub-Total:$ @Math.Round(Repository.Order.Total, 2)</p>
+        <p>Tax:$ @Math.Round(Repository.Order.Tax, 2)</p>
+        <p>Grand Total:$ @Math.Round(Repository.Order.GrandTotal, 2)</p>
+    </div>
+}

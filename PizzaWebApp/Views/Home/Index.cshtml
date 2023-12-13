@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Menu";
+    Pizza cheese = new Pizza();
+    Pizza pepperoni = new Pizza("Pepperoni", "Medium", "Tomato Sauce, Pepperoni, Mozzarella Cheese", false, 11.50M);
+    Pizza meatLovers = new Pizza("Meat Lovers", "Medium", "Tomato Sauce, Pepperoni, Sausage, Ham, Bacon, Chicken, Mozzarella Cheese", false, 15.00M);
+    Pizza hawaiian = new Pizza("Hawaiian", "Medium", "Tomato Sauce, Ham, Pineapple, Mozzarella Cheese", false, 12.50M);
+    Pizza chickenAlfredo = new Pizza("Chicken Alfredo", "Medium", "Alfredo Sauce, Chicken, Mozzarella Cheese", false, 13.00M);
+    Pizza margherita = new Pizza("Margherita", "Medium", "Tomato Sauce, Basil, Mozzarella Cheese", false, 11.00M);
+    Pizza veggieSupreme = new Pizza("Veggie Supreme", "Medium", "Tomato Sauce, Spinach, Green Peppers, Mushrooms, Onions, Mozzarella Cheese", false, 13.50M);
+    Pizza deluxe = new Pizza("Deluxe", "Medium", "Tomato Sauce, Sausage, Chicken, Mushroom, Onions, Green Pepper, Olives, Mozzarella Cheese", false, 14.50M);
+    List<Pizza> menu = new List<Pizza>()
+    {
+        cheese, pepperoni, meatLovers,
+        hawaiian, chickenAlfredo, margherita,
+        veggieSupreme, deluxe
+    };
+    int i = 0;
+    @model PizzaWebApp.Models.Pizza
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Menu</h1>
+    <p>Welcome! to the pizza page, pick your pizza and  get a move on ya freaky fella!</p>
+</div>
+
+
+@foreach (var pizza in menu){
+    <div class="pizza_menu">
+    <form asp-action="UpgradePizzaForm" method="get">
+            <input type="hidden" asp-for="Name" value="@pizza.Name" />
+            <input type="hidden" asp-for="Description" value="@pizza.Description" />
+            <input type="hidden" asp-for="Price" value="@pizza.Price" />
+            <input type="hidden" asp-for="Size" value="@pizza.Size" />
+
+
+        
+            @{
+                switch (i)
+                {
+                    case 0:
+                        <img width="400px" height="auto" src="~/Images/cheese.jpg" />
+                        break;
+                    case 1:
+                        <img width="400px" height="auto" src="~/Images/pepperoni.jpg" />
+                        break;
+                    case 2:
+                        <img width="400px" height="auto" src="~/Images/cheese.jpg" />
+                        break;
+                    case 3:
+                        <img width="400px" height="auto" src="~/Images/cheese.jpg" />
+                        break;
+                    case 4:
+                        <img width="400px" height="auto" src="~/Images/cheese.jpg" />
+                        break;
+                    case 5:
+                        <img width="400px" height="auto" src="~/Images/cheese.jpg" />
+                        break;
+                    case 6:
+                        <img width="400px" height="auto" src="~/Images/cheese.jpg" />
+                        break;
+                    case 7:
+                        <img width="400px" height="auto" src="~/Images/cheese.jpg" />
+                        break;
+                    default:
+                        break;
+
+
+                }
+            }
+        <h1>@pizza.Name</h1>
+        <p>@pizza.Description</p>
+        <p>$ @pizza.Price</p>
+            
+            
+        
+        <button>Add To Cart</button>
+       
+        </form>
+    </div>
+    <br />
+    i++;
+}
+
+
